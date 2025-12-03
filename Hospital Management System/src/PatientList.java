@@ -25,18 +25,14 @@ public class PatientList {
             }
         }
         else{
-            Node temp = head;
+            Node temp = head; //temporary variable
 
-            while(temp.next != null && temp.next.data.getId() != id){
-               temp = temp.next;
+            while(temp.next != null && temp.next.data.getId() != id){ //If temp is not equal to id and there is another element after temp
+               temp = temp.next; //update temp variable
             }
-            if(temp.next == null){
-                System.out.println("This id not found");
-                return;
-            }
-
-            if(temp.next == null){
-                tail = temp;
+            temp.next = temp.next.next;
+            if(temp.next == null){  //the last element is temp
+            tail = temp; //tail is temp
             }
 
         }
@@ -46,26 +42,27 @@ public class PatientList {
             System.out.println("The list is empty");
             return null;
         }
-        Node temp = head;
+        Node temp = head; //temporary variable
         while(temp != null){
-            if(temp.data.getId() == id){
+            if(temp.data.getId() == id){  //if the element to be found is temp
                 return temp.data;
             }
-            temp = temp.next;
+            temp = temp.next; //update temp variable
         }
+        //if the id is not in the list
         System.out.println("Patient id " + id + " not found");
         return null;
     }
 
-    public void print(){
-        Node temp = head;
-        if(head == null){
+    public void print(){ //print the list
+        Node temp = head; //temporary variable
+        if(head == null){ //the listy is empty
             throw new IllegalStateException("The list is empty");
         }
         else{
             while (temp != null){
-                System.out.println(temp.data);
-                temp = temp.next;
+                System.out.println(temp.data); //print temp's data
+                temp = temp.next; // update temp variable
             }
         }
     }
