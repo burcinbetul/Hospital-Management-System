@@ -1,8 +1,9 @@
 public class PatientList {
     public Node head; //first patient
-    public Node tail; //last patient
+    public Node tail;//last patient
 
-    public void addPatient(int id, String name,int severity,int age){ //add patient to the list.
+    //add patient to the list.
+    public void addPatient(int id, String name,int severity,int age){ //constructor
         Patient newPatient = new Patient(id,name,severity,age); //new data
         Node newNode = new Node(newPatient);
         if(head == null){ //Is the list empty
@@ -14,6 +15,7 @@ public class PatientList {
             tail = newNode; //update the tail
         }
     }
+    //remove a patient by their ID
     public void remove(int id){
         if(head == null){ //Is the list empty
             System.out.println("The list is empty");
@@ -37,6 +39,7 @@ public class PatientList {
 
         }
     }
+    //search for a patient by ID and return the object
     public Patient findPatient(int id){
         if(head == null){ //Is the list empty
             System.out.println("The list is empty");
@@ -53,7 +56,7 @@ public class PatientList {
         System.out.println("Patient id " + id + " not found");
         return null;
     }
-
+    //print all patients currently in the list
     public void print(){ //print the list
         Node temp = head; //temporary variable
         if(head == null){ //the listy is empty
@@ -61,7 +64,7 @@ public class PatientList {
         }
         else{
             while (temp != null){
-                System.out.println(temp.data); //print temp's data
+                System.out.println(temp.data + " "); //print temp's data
                 temp = temp.next; // update temp variable
             }
         }
