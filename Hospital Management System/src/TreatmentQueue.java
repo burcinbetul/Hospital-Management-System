@@ -1,11 +1,11 @@
 public class TreatmentQueue {
     private TreatmentNode front;
-    private  TreatmentNode tail;
+    private  TreatmentNode rear;
     private int size;
 
     public TreatmentQueue(){ //constructor
         front = null;
-        tail = null;
+        rear = null;
         size = 0;
     }
     //add a new treatment request to the queue
@@ -13,11 +13,11 @@ public class TreatmentQueue {
         TreatmentNode newNode = new TreatmentNode(request);
         if(front == null){ //if queue is empty
             front = newNode;
-            tail = newNode;
+            rear = newNode;
         }
         else{
-            tail.next = newNode;
-            tail = newNode;
+            rear.next = newNode;
+            rear = newNode;
         }
         size++; //size increase by 1
     }
@@ -30,7 +30,7 @@ public class TreatmentQueue {
         TreatmentRequest temp = front.data; //temporary variable
         front = front.next;
         if(front == null){ //if there are no more elements left after deletion
-            tail = null;
+            rear = null;
         }
         System.out.println(temp + "is deleted");
         size--; //size decreasing by 1

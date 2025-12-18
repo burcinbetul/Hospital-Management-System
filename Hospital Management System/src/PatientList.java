@@ -1,11 +1,11 @@
 public class PatientList {
-    public Node head; //first patient
-    public Node tail;//last patient
+    public PatientNode head; //first patient
+    public PatientNode tail;//last patient
 
     //add patient to the list.
     public void addPatient(int id, String name,int severity,int age){ //constructor
         Patient newPatient = new Patient(id,name,severity,age); //new data
-        Node newNode = new Node(newPatient);
+        PatientNode newNode = new PatientNode(newPatient);
         if(head == null){ //Is the list empty
             head = newNode;
             tail = newNode;
@@ -27,10 +27,14 @@ public class PatientList {
             }
         }
         else{
-            Node temp = head; //temporary variable
+            PatientNode temp = head; //temporary variable
 
             while(temp.next != null && temp.next.data.getId() != id){ //If temp is not equal to id and there is another element after temp
                temp = temp.next; //update temp variable
+            }
+            if(temp.next == null){
+                System.out.println("Patient not found");
+                return;
             }
             temp.next = temp.next.next;
             if(temp.next == null){  //the last element is temp
@@ -45,7 +49,7 @@ public class PatientList {
             System.out.println("The list is empty");
             return null;
         }
-        Node temp = head; //temporary variable
+        PatientNode temp = head; //temporary variable
         while(temp != null){
             if(temp.data.getId() == id){  //if the element to be found is temp
                 return temp.data;
@@ -58,9 +62,9 @@ public class PatientList {
     }
     //print all patients currently in the list
     public void print(){ //print the list
-        Node temp = head; //temporary variable
+        PatientNode temp = head; //temporary variable
         if(head == null){ //the listy is empty
-            throw new IllegalStateException("The list is empty");
+            System.out.println("The list is empty");
         }
         else{
             while (temp != null){
@@ -68,6 +72,25 @@ public class PatientList {
                 temp = temp.next; // update temp variable
             }
         }
+    }
+    public void sortBySeverity(){
+        if(head == null) return;
+
+        boolean exchange;
+        do{
+            exchange = false;
+            PatientNode current = head;
+
+            while(current.next != null){
+                if(current.data.getSeverity()>  current.next.data.getSeverity()){
+                    Patient temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                    exchange = true;
+                }
+                current = current.next;
+            }
+        } while(exchange);
     }
 
 
